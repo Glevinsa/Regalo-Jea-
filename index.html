@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>Para ti, Jea 💫❤️</title>
+  <style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      height:100vh;
+      background: radial-gradient(ellipse at bottom, #0b001f 0%, #000 100%);
+      color:white;
+      font-family:system-ui, sans-serif;
+      overflow:hidden;
+      margin:0;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .stars {
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+    }
+    .star {
+      position:absolute;
+      background:white;
+      border-radius:50%;
+      opacity:0.7;
+      animation:twinkle 5s infinite alternate;
+    }
+    @keyframes twinkle {
+      0%,100% { opacity:0.5; transform:scale(0.9); }
+      50% { opacity:1; transform:scale(1.1); }
+    }
+    .intro {
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      gap:3rem; /* Espacio ideal entre texto y botón */
+      width:100%;
+      max-width:90%;
+      padding:0 20px;
+      height:100vh; /* Ocupa toda la pantalla para centrar verticalmente perfecto */
+    }
+    h1 {
+      font-size:clamp(4rem, 20vw, 8rem);
+      font-weight:900;
+      margin:0;
+      line-height:1;
+      letter-spacing:-2px;
+    }
+    .btn-start {
+      padding:1.5rem 5rem;
+      font-size:clamp(1.8rem, 10vw, 3rem);
+      font-weight:bold;
+      color:white;
+      background:#e63946;
+      border:none;
+      border-radius:999px;
+      cursor:pointer;
+      box-shadow:0 0 50px rgba(230,57,70,0.8);
+      transition:all 0.3s ease;
+    }
+    .btn-start:active {
+      transform:scale(0.95);
+      box-shadow:0 0 70px rgba(230,57,70,1);
+    }
+    .solar-system {
+      position:relative;
+      width:min(95vw,800px);
+      height:min(95vw,800px);
+      opacity:0;
+      transition:opacity 1s;
+    }
+    .center-heart {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      width:clamp(180px,45vw,260px);
+      height:clamp(180px,45vw,260px);
+      cursor:pointer;
+      z-index:5;
+    }
+    .center-heart svg {
+      width:100%;
+      height:100%;
+      filter:drop-shadow(0 0 40px #ff1a4d);
+    }
+    .center-num {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      font-size:clamp(4rem,20vw,7rem);
+      font-weight:bold;
+      color:#ff99cc;
+      text-shadow:0 0 20px #ff99cc;
+      pointer-events:none;
+      z-index:6;
+    }
+    .heart {
+      position:absolute;
+      width:clamp(70px,20vw,110px);
+      height:clamp(70px,20vw,110px);
+      cursor:pointer;
+      z-index:4;
+    }
+    .heart svg {
+      width:100%;
+      height:100%;
+      filter:drop-shadow(0 0 25px rgba(255,102,153,0.8));
+    }
+    .heart-num {
+      position:absolute;
+      top:50%;
+      left:50%;
+      transform:translate(-50%,-50%);
+      font-size:clamp(1.8rem,10vw,3rem);
+      font-weight:bold;
+      color:#ff1a4d;
+      text-shadow:0 0 12px rgba(0,0,0,0.7);
+      pointer-events:none;
+      z-index:10;
+    }
+    .message {
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.88);
+      display:none;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      z-index:20;
+      padding:20px;
+      backdrop-filter:blur(8px);
+    }
+    .message p {
+      font-size:clamp(2.5rem,12vw,4.5rem);
+      font-weight:bold;
+      color:#ff3366;
+      text-align:center;
+      text-shadow:0 0 20px #ff3366;
+      margin-bottom:2rem;
+    }
+    .close {
+      padding:1rem 3rem;
+      font-size:1.5rem;
+      background:#222;
+      color:white;
+      border:3px solid #ff3366;
+      border-radius:999px;
+      cursor:pointer;
+    }
+    .final-screen {
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.92);
+      display:none;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      z-index:15;
+      padding:20px;
+      text-align:center;
+    }
+    .final-screen h1 {
+      font-size:clamp(3.5rem,18vw,6rem);
+      color:#ff3366;
+      margin-bottom:1.5rem;
+      animation:pulse 2.5s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform:scale(1); }
+      50% { transform:scale(1.08); }
+    }
+    .teddy {
+      max-width:85vw;
+      max-height:55vh;
+      border-radius:20px;
+      box-shadow:0 0 40px rgba(255,51,102,0.5);
+      margin:1.5rem 0;
+    }
+    .final-text {
+      font-size:clamp(2rem,10vw,3.2rem);
+      color:#ffcc00;
+      margin-top:1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="stars" id="stars"></div>
+
+  <div class="intro" id="intro">
+    <h1>Jea...</h1>
+    <button class="btn-start" id="start">Iniciar 💖</button>
+  </div>
+
+  <div class="solar-system" id="solar">
+    <div class="center-heart" id="centerHeart">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#gradCenter)"/>
+        <defs>
+          <linearGradient id="gradCenter" x1="256" y1="0" x2="256" y2="512">
+            <stop stop-color="#ff1a4d"/>
+            <stop offset="1" stop-color="#ff3366"/>
+          </linearGradient>
+        </defs>
+      </svg>
+      <span class="center-num">8</span>
+    </div>
+
+    <!-- Corazones fijos en posiciones de reloj -->
+    <div class="heart" style="transform: translate(-50%, -50%) rotate(0deg) translate(0, -225px); left:50%; top:50%;" data-msg="Te Quiero" data-num="1">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#grad1)"/>
+        <defs><linearGradient id="grad1" x1="256" y1="0" x2="256" y2="512"><stop stop-color="#ff6699"/><stop offset="1" stop-color="#ff99cc"/></linearGradient></defs>
+      </svg>
+      <span class="heart-num">1</span>
+    </div>
+
+    <div class="heart" style="transform: translate(-50%, -50%) rotate(51.4deg) translate(0, -225px); left:50%; top:50%;" data-msg="Te Aprecio" data-num="2">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#grad2)"/>
+        <defs><linearGradient id="grad2" x1="256" y1="0" x2="256" y2="512"><stop stop-color="#ff6699"/><stop offset="1" stop-color="#ff99cc"/></linearGradient></defs>
+      </svg>
+      <span class="heart-num">2</span>
+    </div>
+
+    <div class="heart" style="transform: translate(-50%, -50%) rotate(102.8deg) translate(0, -225px); left:50%; top:50%;" data-msg="Te deseo con todo mi ser" data-num="3">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#grad3)"/>
+        <defs><linearGradient id="grad3" x1="256" y1="0" x2="256" y2="512"><stop stop-color="#ff6699"/><stop offset="1" stop-color="#ff99cc"/></linearGradient></defs>
+      </svg>
+      <span class="heart-num">3</span>
+    </div>
+
+    <div class="heart" style="transform: translate(-50%, -50%) rotate(154.3deg) translate(0, -225px); left:50%; top:50%;" data-msg="Te extraño un montón" data-num="4">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#grad4)"/>
+        <defs><linearGradient id="grad4" x1="256" y1="0" x2="256" y2="512"><stop stop-color="#ff6699"/><stop offset="1" stop-color="#ff99cc"/></linearGradient></defs>
+      </svg>
+      <span class="heart-num">4</span>
+    </div>
+
+    <div class="heart" style="transform: translate(-50%, -50%) rotate(205.7deg) translate(0, -225px); left:50%; top:50%;" data-msg="Bandida 😛" data-num="5">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#grad5)"/>
+        <defs><linearGradient id="grad5" x1="256" y1="0" x2="256" y2="512"><stop stop-color="#ff6699"/><stop offset="1" stop-color="#ff99cc"/></linearGradient></defs>
+      </svg>
+      <span class="heart-num">5</span>
+    </div>
+
+    <div class="heart" style="transform: translate(-50%, -50%) rotate(257.1deg) translate(0, -225px); left:50%; top:50%;" data-msg="Me perdonas?" data-num="6">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#grad6)"/>
+        <defs><linearGradient id="grad6" x1="256" y1="0" x2="256" y2="512"><stop stop-color="#ff6699"/><stop offset="1" stop-color="#ff99cc"/></linearGradient></defs>
+      </svg>
+      <span class="heart-num">6</span>
+    </div>
+
+    <div class="heart" style="transform: translate(-50%, -50%) rotate(308.6deg) translate(0, -225px); left:50%; top:50%;" data-msg="I Lov U" data-num="7">
+      <svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z" fill="url(#grad7)"/>
+        <defs><linearGradient id="grad7" x1="256" y1="0" x2="256" y2="512"><stop stop-color="#ff6699"/><stop offset="1" stop-color="#ff99cc"/></linearGradient></defs>
+      </svg>
+      <span class="heart-num">7</span>
+    </div>
+  </div>
+
+  <div class="message" id="msgModal">
+    <p id="msgText"></p>
+    <button class="close" id="closeMsg">Seguir 💫</button>
+  </div>
+
+  <div class="final-screen" id="final">
+    <h1>Feliz San Valentín</h1>
+    <img class="teddy" src="https://i.pinimg.com/736x/06/09/4a/06094a162e229d3c6d0de0b47d5d7dbc.jpg" alt="Oso de peluche tierno con corazón rojo">
+    <div class="final-text">Te amo Bandida ❤️ I Lov U</div>
+  </div>
+
+  <script>
+    // Estrellas
+    const starsContainer = document.getElementById('stars');
+    for (let i = 0; i < 220; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.width = star.style.height = Math.random() * 3 + 'px';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = Math.random() * 6 + 's';
+      starsContainer.appendChild(star);
+    }
+
+    const intro = document.getElementById('intro');
+    const solar = document.getElementById('solar');
+    const startBtn = document.getElementById('start');
+    const msgModal = document.getElementById('msgModal');
+    const msgText = document.getElementById('msgText');
+    const closeMsg = document.getElementById('closeMsg');
+    const finalScreen = document.getElementById('final');
+
+    let unlocked = new Set();
+
+    startBtn.addEventListener('click', () => {
+      intro.style.opacity = '0';
+      setTimeout(() => {
+        intro.style.display = 'none';
+        solar.style.opacity = '1';
+      }, 700);
+    });
+
+    document.querySelectorAll('.heart, #centerHeart').forEach(el => {
+      el.addEventListener('click', () => {
+        const num = el.dataset.num || '8';
+        const msg = el.dataset.msg || 'Te Amo Jea ❤️';
+
+        if (unlocked.has(num)) return;
+        unlocked.add(num);
+
+        msgText.textContent = msg;
+        msgModal.style.display = 'flex';
+
+        if (num === '8') {
+          closeMsg.textContent = "Siguiente →";
+          closeMsg.onclick = () => {
+            msgModal.style.display = 'none';
+            finalScreen.style.display = 'flex';
+          };
+        } else {
+          closeMsg.textContent = "Seguir 💫";
+          closeMsg.onclick = () => {
+            msgModal.style.display = 'none';
+          };
+        }
+      });
+    });
+
+    document.getElementById('centerHeart').dataset.num = "8";
+    document.getElementById('centerHeart').dataset.msg = "Te Amo Jea ❤️";
+  </script>
+</body>
+</html>
